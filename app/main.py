@@ -5,7 +5,6 @@ from loguru import logger
 
 from app.repository.database import engine, create_db_and_tables, execute_sql_file
 from app.controller import LectureController, UserController
-from app.entity import *
 
 
 @asynccontextmanager  # 生命周期管理，指定在应用启动和关闭时执行的操作

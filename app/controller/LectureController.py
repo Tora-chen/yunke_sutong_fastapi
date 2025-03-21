@@ -1,12 +1,13 @@
 # 这个文件存放 Lecture 的控制器，用于处理和 Lecture 有关的请求
 
 from typing import Annotated
-from fastapi import APIRouter, HTTPException, Depends, Body
+from fastapi import APIRouter, Depends, Body, HTTPException
 from sqlmodel import select
+from loguru import logger
 
 from app.repository.database import SessionDep
-from app.entity import *
-from app.util.auth import *
+from app.entity import Lecture, User
+from app.util.auth import has_role
 
 
 router = APIRouter(
