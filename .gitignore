@@ -1,0 +1,8 @@
+config.toml
+database.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.idea/
+.venv/

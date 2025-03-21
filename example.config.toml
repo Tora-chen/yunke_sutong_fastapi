@@ -1,0 +1,10 @@
+# 这是示例配置文件，请根据实际情况配置后，改名为 config.toml
+
+[security]
+secret_key = "your_secret_key_1234321" # 生成 JWT 的密钥，为一个随机字符串
+algorithm = "HS256" # 生成 JWT 的算法
+access_token_expire_minutes = 10080  # JWT 过期时间
+
+[database]
+sqlite_url = "sqlite:///database.db" # 数据库 URL
+echo_sql = false # 是否打印 SQL 语句
