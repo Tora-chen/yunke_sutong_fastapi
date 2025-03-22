@@ -6,7 +6,7 @@ from sqlmodel import select
 from loguru import logger
 
 from app.repository.database import SessionDep
-from app.entity import Lecture, User
+from app.entity import Lecture, User, Video
 from app.util.auth import has_role
 
 
@@ -89,7 +89,15 @@ def get_my_lectures(
     ).all()
     return lectures
 
-# @router.get("/{lectureId}/videos") # 获取某个讲座的所有视频 TODO
+@router.get("/{lecture_id}/videos") # 获取某个讲座的所有视频
+def get_videos_of_lecture(
+    session: SessionDep,
+    lecture_id: int
+) -> list[Video]:
+    videos = session.exec(
+        select(Video).where(Video.lecture_id == lecture_id)
+    ).all()
+    return videos
 
 
 @router.get("/recommendedLecture")  # 获取推荐的讲座
