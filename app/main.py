@@ -4,7 +4,7 @@ from sqlmodel import SQLModel
 from loguru import logger
 
 from app.repository.database import engine, create_db_and_tables, execute_sql_file
-from app.controller import LectureController, UserController, NoteController
+from app.controller import LectureController, UserController, NoteController, CaptionController
 
 
 @asynccontextmanager  # 生命周期管理，指定在应用启动和关闭时执行的操作
@@ -24,6 +24,8 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(LectureController.router)
 app.include_router(UserController.router)
 app.include_router(NoteController.router)
+app.include_router(CaptionController.router_student)
+app.include_router(CaptionController.router_video_processor)
 
 
 @app.get("/")
