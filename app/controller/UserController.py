@@ -9,9 +9,9 @@ from typing import Annotated
 from sqlmodel import select
 
 from app.util.auth import Token, authenticate_user, create_access_token
-from app.repository.database import Session, get_session
+from app.repository.database import Session, get_session, SessionDep
 from app.config import ACCESS_TOKEN_EXPIRE_MINUTES
-from app.entity.User import User
+from app.entity import User
 from app.util.auth import get_password_hash
 
 
@@ -41,7 +41,7 @@ async def login(
 
 @router.post("/api/register") # 注册
 async def register(
-    session: Annotated[Session, Depends(get_session)],
+    session: SessionDep,
     username: str = Form(),
     display_name: str = Form(),
     password: str = Form(),
